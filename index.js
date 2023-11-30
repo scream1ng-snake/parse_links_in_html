@@ -1,6 +1,7 @@
 const folderPath = 'C:/Users/saidlykaov/Downloads/Archive/messages/628090942'
 const fs = require('fs');
 const files = fs.readdirSync(folderPath);
+const open = require('open');
 
 var iconv = require('iconv-lite');
 var cheerio = require('cheerio');
@@ -24,5 +25,16 @@ for (const fileName of files) {
   }
 
 }
+function pause(millis) {
+  var date = Date.now();
+  var curDate = null;
+  do {
+      curDate = Date.now();
+  } while (curDate-date < millis);
+}
 
 fs.writeFileSync('C:/Users/saidlykaov/Desktop/Новая папка/file.txt', imageLinks.join('\n\n'))
+for(imagelink of imageLinks) {
+  open(imagelink)
+  pause(300)
+}
